@@ -28,6 +28,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    color: #333;
 }
 ol, ul {
     list-style: none;
@@ -84,7 +85,7 @@ body, html {
 }
 .chip {
     display: inline-block;
-    background: #7D7D7D;
+    background: #555;
     color: #FCFCFC;
     padding: 6px;
     margin: 1px;
@@ -181,7 +182,7 @@ textarea {
 }
 input[type="submit"] {
     font-weight: 600;
-    color:rgba(20, 20, 20, 0.7);
+    color:rgba(20, 20, 20, 0.9);
     background-color: rgba(215,215,215,.3);
     border-radius: 4px;
     padding: 8px 15px;
@@ -203,11 +204,20 @@ textarea {
     margin-top: 12px;
     text-decoration: none;
     display: block;
-    color: #7D7D7D;
+    color: #444;
+}
+.notices p {
+    margin-top: 12px;
+    text-decoration: none;
+    display: block;
 }
 .kss-social {
     text-align: center;
     padding: 48px 16px 16px 16px;
+}
+/* We add a text description for accessibility and hide it so only image shows */
+.kss-social a {
+    font-size: 0;
 }
 .kss-social-icon {
     margin: 0 16px;
