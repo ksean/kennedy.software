@@ -87,7 +87,7 @@ body, html {
 }
 .kss-description {
     padding: 16px 0;
-    max-width: 560px;
+    width: 90%;
     text-align: center;
     margin: 0 auto;
 }
@@ -116,8 +116,8 @@ body, html {
     display: inline-block;
     background: #555;
     color: #FCFCFC;
-    padding: 6px;
-    margin: 1px;
+    padding: 8px;
+    margin: 2px;
     border-radius: 32px;
     font-size: 16px;
 }
@@ -210,7 +210,8 @@ textarea {
     box-sizing: border-box;
 }
 input[type="submit"] {
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 16px;
     color:rgba(20, 20, 20, 0.9);
     background-color: rgba(215,215,215,.3);
     border-radius: 4px;
