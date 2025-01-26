@@ -114,15 +114,15 @@ body, html {
 }
 .chip {
     display: inline-block;
-    background: #555;
-    color: #FCFCFC;
+    background: #F1F1F1;
+    color: #555;
     padding: 8px;
     margin: 2px;
     border-radius: 32px;
     font-size: 16px;
 }
 .chip:hover {
-     background-color: #333;
+     background-color: #DFDFDF;
 }
 
 /* MAIN */
@@ -136,34 +136,30 @@ main h2 {
     padding: 8px 0;
 }
 
-.kss-subtitle {
+.kss-skills-title {
     font-family: 'Satisfy', cursive;
     line-height: 0.5;
     text-align: center;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 48px;
     overflow: hidden;
 }
-.kss-subtitle span {
+.kss-skills-title span {
     display: inline-block;
     position: relative;
 }
-.kss-subtitle span:before,
-.kss-subtitle span:after {
+.kss-skills-title span:before,
+.kss-skills-title span:after {
     content: "";
     position: absolute;
     height: 5px;
     border-bottom: 1px solid #999;
-    border-top: 1px solid #999;
     top: 0;
     width: 600px;
 }
-.kss-subtitle span:before {
+.kss-skills-title span:before {
     right: 100%;
     margin-right: 15px;
 }
-.kss-subtitle span:after {
+.kss-skills-title span:after {
     left: 100%;
     margin-left: 15px;
 }
@@ -185,8 +181,11 @@ main p.last {
     text-align: center;
 }
 .kss-skills h2 {
-    font-size: 20px;
-    color: #333;
+    font-size: 26px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 48px;
+    padding-bottom: 12px;
 }
 
 /* FORM */
