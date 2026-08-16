@@ -1,126 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Kennedy Software Solutions</title>
-
-        <!-- Meta declaration -->
+        <!-- charset first: the spec wants it inside the first 1024 bytes -->
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Kennedy Software Solutions</title>
         <meta name="description"
               content="Kennedy Software Solutions Inc. is an information technology consulting firm serving the Greater Toronto Area">
         <meta name="author" content="Kennedy Software Solutions Inc.">
-        <meta charset="UTF-8">
+        <link rel="canonical" href="https://kennedy.software/">
+        <meta name="theme-color" content="#FCFCFC">
 
-        <!-- CSS includes -->
-        <link rel="shortcut icon" type="image/png" href="favico.png">
-        <link rel="stylesheet" href="css/index.min.css">
+        <!-- Start the font fetch now rather than after the CSS has parsed.
+             crossorigin is required even same-origin; without it the preload
+             is discarded and the font is downloaded twice. -->
+        <link rel="preload" href="/fonts/roboto-v29-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="/css/index.css">
+
+        <link rel="icon" href="/favicon-32.png" sizes="32x32">
+        <link rel="icon" href="/favicon-192.png" sizes="192x192">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Kennedy Software Solutions Inc.">
+        <meta property="og:title" content="Kennedy Software Solutions">
+        <meta property="og:description"
+              content="A Canadian technology consulting firm serving the Greater Toronto Area.">
+        <meta property="og:url" content="https://kennedy.software/">
+        <meta property="og:image" content="https://kennedy.software/img/og-card.png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Kennedy Software Solutions Inc.",
+            "url": "https://kennedy.software/",
+            "logo": "https://kennedy.software/img/logo.svg",
+            "image": "https://kennedy.software/img/og-card.png",
+            "description": "Kennedy Software Solutions Inc. is an information technology consulting firm serving the Greater Toronto Area.",
+            "areaServed": {
+                "@type": "Place",
+                "name": "Greater Toronto Area"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "ON",
+                "addressCountry": "CA"
+            },
+            "sameAs": [
+                "https://ca.linkedin.com/in/kennedyms",
+                "https://github.com/ksean",
+                "https://stackoverflow.com/users/2387016/sean-kennedy"
+            ]
+        }
+        </script>
     </head>
     <body>
         <div class="kss-container">
             <header class="kss-header">
-                <img alt="Kennedy Software Solutions" src="/img/logo.svg">
+                <h1><img alt="Kennedy Software Solutions" src="/img/logo.svg"
+                         width="559" height="117" fetchpriority="high"></h1>
             </header>
             <main class="kss-main">
-                <div class="kss-description">
+                <p class="kss-description">
                     Kennedy Software Solutions Inc. is a leading Canadian technology consulting firm.
                     Our track record of success is paved with tested and proven technologies.
-                </div>
+                </p>
 
-                <div class="kss-banner">
-                    <img class="kss-banner-image" src="/img/create.jpg" alt="Clouds">
-                    <span>Bring your fresh product ideas to life.</span>
-                </div>
+                <figure class="kss-banner">
+                    <picture>
+                        <source type="image/webp"
+                                srcset="/img/create-480.webp 480w, /img/create-768.webp 768w, /img/create-1024.webp 1024w"
+                                sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
+                        <img class="kss-banner-image" src="/img/create.jpg" alt=""
+                             width="1024" height="273" decoding="async">
+                    </picture>
+                    <figcaption>Bring your fresh product ideas to life.</figcaption>
+                </figure>
 
-                <div class="kss-banner">
-                    <img class="kss-banner-image" src="/img/extend.jpg" alt="Mountains">
-                    <span>Expand and integrate with an existing product.</span>
-                </div>
+                <figure class="kss-banner">
+                    <picture>
+                        <source type="image/webp"
+                                srcset="/img/extend-480.webp 480w, /img/extend-768.webp 768w, /img/extend-1024.webp 1024w"
+                                sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
+                        <img class="kss-banner-image" src="/img/extend.jpg" alt=""
+                             width="1024" height="273" loading="lazy" decoding="async">
+                    </picture>
+                    <figcaption>Expand and integrate with an existing product.</figcaption>
+                </figure>
 
-                <div class="kss-banner">
-                    <img class="kss-banner-image" src="/img/mentor.jpg" alt="Forest">
-                    <span>Apply modern best practices to a project.</span>
-                </div>
+                <figure class="kss-banner">
+                    <picture>
+                        <source type="image/webp"
+                                srcset="/img/mentor-480.webp 480w, /img/mentor-768.webp 768w, /img/mentor-1024.webp 1024w"
+                                sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
+                        <img class="kss-banner-image" src="/img/mentor.jpg" alt=""
+                             width="1024" height="273" loading="lazy" decoding="async">
+                    </picture>
+                    <figcaption>Apply modern best practices to a project.</figcaption>
+                </figure>
 
                 <div class="kss-skills">
-                    <h2 class="kss-skills-title"><span>Cloud</span></h2>
-                    <div class="kss-chips">
-                        <span class="chip">AWS</span>
-                        <span class="chip">Azure</span>
-                        <span class="chip">GCP</span>
-                    </div>
+                    <h2 class="kss-skills-title" id="skills-cloud">Cloud</h2>
+                    <ul class="kss-chips" aria-labelledby="skills-cloud">
+                        <li class="chip">AWS</li>
+                        <li class="chip">Azure</li>
+                        <li class="chip">GCP</li>
+                    </ul>
 
-                    <h2 class="kss-skills-title"><span>Languages</span></h2>
-                    <div class="kss-chips">
-                        <span class="chip">Bash</span>
-                        <span class="chip">C#</span>
-                        <span class="chip">Go</span>
-                        <span class="chip">Java</span>
-                        <span class="chip">JavaScript</span>
-                        <span class="chip">Kotlin</span>
-                        <span class="chip">PHP</span>
-                        <span class="chip">PowerShell</span>
-                        <span class="chip">Python</span>
-                        <span class="chip">Ruby</span>
-                        <span class="chip">SQL</span>
-                        <span class="chip">VBA</span>
-                    </div>
+                    <h2 class="kss-skills-title" id="skills-languages">Languages</h2>
+                    <ul class="kss-chips" aria-labelledby="skills-languages">
+                        <li class="chip">Bash</li>
+                        <li class="chip">C#</li>
+                        <li class="chip">Go</li>
+                        <li class="chip">Java</li>
+                        <li class="chip">JavaScript</li>
+                        <li class="chip">Kotlin</li>
+                        <li class="chip">PHP</li>
+                        <li class="chip">PowerShell</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Ruby</li>
+                        <li class="chip">SQL</li>
+                        <li class="chip">VBA</li>
+                    </ul>
 
-                    <h2 class="kss-skills-title"><span>Frameworks - Libraries - Platforms - Tools</span></h2>
-                    <div class="kss-chips">
-                        <span class="chip">Akka</span>
-                        <span class="chip">Ansible</span>
-                        <span class="chip">Django</span>
-                        <span class="chip">Docker</span>
-                        <span class="chip">Git</span>
-                        <span class="chip">IBM MQ</span>
-                        <span class="chip">Jenkins</span>
-                        <span class="chip">JMeter</span>
-                        <span class="chip">JMH</span>
-                        <span class="chip">Kafka</span>
-                        <span class="chip">Kubernetes</span>
-                        <span class="chip">Nagios</span>
-                        <span class="chip">Node.js</span>
-                        <span class="chip">OAS</span>
-                        <span class="chip">RabbitMQ</span>
-                        <span class="chip">React</span>
-                        <span class="chip">Selenium</span>
-                        <span class="chip">Spring</span>
-                        <span class="chip">ZeroMQ</span>
-                    </div>
+                    <h2 class="kss-skills-title" id="skills-frameworks">Frameworks &ndash; Libraries &ndash; Platforms &ndash; Tools</h2>
+                    <ul class="kss-chips" aria-labelledby="skills-frameworks">
+                        <li class="chip">Akka</li>
+                        <li class="chip">Ansible</li>
+                        <li class="chip">Django</li>
+                        <li class="chip">Docker</li>
+                        <li class="chip">Git</li>
+                        <li class="chip">IBM MQ</li>
+                        <li class="chip">Jenkins</li>
+                        <li class="chip">JMeter</li>
+                        <li class="chip">JMH</li>
+                        <li class="chip">Kafka</li>
+                        <li class="chip">Kubernetes</li>
+                        <li class="chip">Nagios</li>
+                        <li class="chip">Node.js</li>
+                        <li class="chip">OAS</li>
+                        <li class="chip">RabbitMQ</li>
+                        <li class="chip">React</li>
+                        <li class="chip">Selenium</li>
+                        <li class="chip">Spring</li>
+                        <li class="chip">ZeroMQ</li>
+                    </ul>
 
-                    <h2 class="kss-skills-title"><span>Datastores - Caches - Search engines</span></h2>
-                    <div class="kss-chips">
-                        <span class="chip">Cassandra</span>
-                        <span class="chip">Druid</span>
-                        <span class="chip">Elasticsearch</span>
-                        <span class="chip">Memcached</span>
-                        <span class="chip">Microsoft SQL Server</span>
-                        <span class="chip">MongoDB</span>
-                        <span class="chip">MySQL</span>
-                        <span class="chip">Oracle DBMS</span>
-                        <span class="chip">PostgresSQL</span>
-                        <span class="chip">Redis</span>
-                        <span class="chip">Solr</span>
-                    </div>
+                    <h2 class="kss-skills-title" id="skills-datastores">Datastores &ndash; Caches &ndash; Search engines</h2>
+                    <ul class="kss-chips" aria-labelledby="skills-datastores">
+                        <li class="chip">Cassandra</li>
+                        <li class="chip">Druid</li>
+                        <li class="chip">Elasticsearch</li>
+                        <li class="chip">Memcached</li>
+                        <li class="chip">Microsoft SQL Server</li>
+                        <li class="chip">MongoDB</li>
+                        <li class="chip">MySQL</li>
+                        <li class="chip">Oracle DBMS</li>
+                        <li class="chip">PostgresSQL</li>
+                        <li class="chip">Redis</li>
+                        <li class="chip">Solr</li>
+                    </ul>
                 </div>
+
                 <div class="kss-contact">
                     <h2 class="kss-contact-title">Contact</h2>
                     <form action="https://formspree.io/f/xvovnkgl" method="POST">
-                        <label>
-                            <input type="email" name="_replyto" placeholder="Your email">
-                        </label>
-                        <label>
-                            <textarea name="message" rows="8" placeholder="Message"></textarea>
-                        </label>
-                        <input type="submit" value="Send">
+                        <div class="kss-field">
+                            <label for="email">Your email</label>
+                            <input id="email" type="email" name="_replyto"
+                                   autocomplete="email" required>
+                        </div>
+                        <div class="kss-field">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="8" required></textarea>
+                        </div>
+                        <input type="hidden" name="_subject" value="Enquiry via kennedy.software">
+                        <!-- Formspree discards any submission that fills _gotcha -->
+                        <div class="kss-hp" aria-hidden="true">
+                            <label for="company">Leave this field empty</label>
+                            <input id="company" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+                        </div>
+                        <button class="kss-submit" type="submit">Send</button>
                     </form>
                 </div>
             </main>
 
             <footer class="kss-footer">
                 <div class="kss-social">
-                    <a target="_blank" rel="noreferrer" href="https://ca.linkedin.com/in/kennedyms"><div class="kss-social-icon linkedin"></div>LinkedIn</a>
-                    <a target="_blank" rel="noreferrer" href="https://github.com/ksean"><div class="kss-social-icon github"></div>GitHub</a>
-                    <a target="_blank" rel="noreferrer" href="https://stackoverflow.com/users/2387016/sean-kennedy"><div class="kss-social-icon stackoverflow"></div>Stack Overflow</a>
+                    <a target="_blank" rel="noreferrer" href="https://ca.linkedin.com/in/kennedyms">
+                        <svg class="kss-social-icon" viewBox="0 0 32 32" width="64" height="64" aria-hidden="true" focusable="false">
+                            <circle cx="16" cy="16" r="16" fill="#0173B2"/>
+                            <g transform="translate(6 6) scale(0.833333)" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></g>
+                        </svg>
+                        <span class="visually-hidden">LinkedIn (opens in a new tab)</span>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="https://github.com/ksean">
+                        <svg class="kss-social-icon" viewBox="0 0 32 32" width="64" height="64" aria-hidden="true" focusable="false">
+                            <circle cx="16" cy="16" r="16" fill="#434A54"/>
+                            <g transform="translate(6 6) scale(0.833333)" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></g>
+                        </svg>
+                        <span class="visually-hidden">GitHub (opens in a new tab)</span>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="https://stackoverflow.com/users/2387016/sean-kennedy">
+                        <svg class="kss-social-icon" viewBox="0 0 32 32" width="64" height="64" aria-hidden="true" focusable="false">
+                            <circle cx="16" cy="16" r="16" fill="#CE6F2D"/>
+                            <g transform="translate(6 6) scale(0.833333)" fill="#fff"><path d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731H16.85v-2.137H6.111v2.137zm.259-4.852l10.48 2.189.451-2.07-10.478-2.187-.453 2.068zm1.359-5.056l9.705 4.53.903-1.95-9.706-4.53-.902 1.936v.014zm2.715-4.785l8.217 6.855 1.359-1.62-8.216-6.853-1.35 1.617-.01.001zM15.751 0l-1.746 1.294 6.405 8.604 1.746-1.294L15.751 0z"/></g>
+                        </svg>
+                        <span class="visually-hidden">Stack Overflow (opens in a new tab)</span>
+                    </a>
                 </div>
 
                 <div class="notices">

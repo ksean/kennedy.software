@@ -1,269 +1,395 @@
-/* RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    font-display: swap;
-}
+/* ==========================================================================
+   Kennedy Software Solutions Inc.
+   Single stylesheet. Loaded directly (there is no minified twin to keep in
+   sync) — at this size the build step cost more than the bytes it saved.
+   ========================================================================== */
 
-/* roboto-regular - latin */
+/* --------------------------------------------------------------------------
+   FONTS
+   woff2 only: it covers ~98% of browsers, and every other format we used to
+   ship (eot/ttf/svg/woff) targeted browsers that no longer exist.
+   font-display belongs *here*, as a @font-face descriptor — not in a normal
+   rule, where it is silently discarded and the face falls back to `auto`
+   (up to 3s of invisible text).
+   -------------------------------------------------------------------------- */
 @font-face {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/roboto-v29-latin-regular.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/roboto-v29-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/roboto-v29-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/roboto-v29-latin-regular.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/roboto-v29-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../fonts/roboto-v29-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+    font-display: swap;
+    src: url('../fonts/roboto-v29-latin-regular.woff2') format('woff2');
 }
 
-/* satisfy-regular - latin */
+/* Satisfy sets five decorative headings. `optional` lets the browser skip the
+   swap entirely on a slow connection rather than reflowing them late. */
 @font-face {
     font-family: 'Satisfy';
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/satisfy-v11-latin-regular.eot'); /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/satisfy-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/satisfy-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/satisfy-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/satisfy-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../fonts/satisfy-v11-latin-regular.svg#Satisfy') format('svg'); /* Legacy iOS */
+    font-display: optional;
+    src: url('../fonts/satisfy-v11-latin-regular.woff2') format('woff2');
 }
 
+/* --------------------------------------------------------------------------
+   TOKENS
+   Every value below is a rendered colour. The page used to carry
+   `opacity: .8` on its container, which meant no colour was the colour the
+   stylesheet claimed — and it pushed the skill chips to 4.09:1, under AA.
+   Contrast against #FCFCFC is noted where it matters.
+   -------------------------------------------------------------------------- */
+:root {
+    --kss-page:        #FCFCFC;
+    --kss-ink:         #4F4F4F;  /*  7.98:1  body copy                  */
+    --kss-ink-strong:  #333333;  /* 12.32:1  headings, captions         */
+    --kss-link:        #2F4F8F;  /*  7.77:1  links                      */
+    --kss-chip-bg:     #ECECEC;
+    --kss-chip-ink:    #4F4F4F;  /*  6.93:1  on --kss-chip-bg           */
+    --kss-field:       #FFFFFF;
+    --kss-border:      #767676;  /*  4.43:1  control boundaries (1.4.11)*/
+    --kss-button:      #E4E4E4;
+    --kss-button-ink:  #2A2A2A;  /* 11.29:1  on --kss-button            */
+    --kss-hairline:    #B0B0B0;  /* decorative rules only               */
+    --kss-focus:       #1B4EC4;  /*  6.98:1  focus ring                 */
+    --kss-caption-bg:  #FAFAFA;  /* opaque: caption contrast no longer
+                                    depends on the photo behind it      */
+}
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+/* --------------------------------------------------------------------------
+   RESET
+   Replaces the Meyer reset, which still named applet, acronym, big, center,
+   strike, tt and hgroup — all removed from HTML — and applied box-sizing to
+   two input types instead of everything.
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
-body {
-    line-height: 1;
-    color: #333;
+body, h1, h2, h3, p, figure, figcaption, ul, ol, dl, dd, fieldset {
+    margin: 0;
+    padding: 0;
 }
-ol, ul {
+ul[class], ol[class] {
     list-style: none;
 }
-/* END RESET */
-
-body, html {
-    background-color: #FCFCFC;
-    font-family: 'Roboto', sans-serif;
+img, svg, picture {
+    display: block;
+    max-width: 100%;
 }
+img {
+    height: auto;
+}
+input, textarea, button, select {
+    font: inherit;
+    color: inherit;
+}
+button {
+    background: none;
+    border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   BASE
+   -------------------------------------------------------------------------- */
+html {
+    /* stops iOS Safari inflating text when the device is turned to landscape */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+body {
+    background-color: var(--kss-page);
+    color: var(--kss-ink);
+    font-family: 'Roboto', system-ui, sans-serif;
+    line-height: 1.5;
+}
+a {
+    color: var(--kss-link);
+}
+
+/* One focus style for the whole site. The old stylesheet defined none, and
+   the container opacity dimmed the browser default on top of that. */
+:focus-visible {
+    outline: 3px solid var(--kss-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Names for icon-only links. Replaces `font-size: 0`, which left the link
+   with no visible content at all once forced-colors mode dropped the CSS
+   background images that were standing in for its label. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+    border: 0;
+}
+
 .kss-container {
     padding: 16px;
     margin: 0 auto;
     max-width: 1024px;
-    opacity: 0.8;
 }
 
-/* HEADER */
+/* --------------------------------------------------------------------------
+   HEADER
+   -------------------------------------------------------------------------- */
 .kss-header {
     padding-bottom: 16px;
 }
+/* The logo image *is* the page's h1; the heading itself carries no styling
+   of its own. */
+.kss-header h1 {
+    font-size: inherit;
+    font-weight: inherit;
+}
 .kss-header img {
-    display: block;
     margin: 0 auto;
-    max-width: 100%;
-    opacity: 0.9;
+    opacity: .85;
 }
 .kss-description {
     padding: 16px 0;
     width: 90%;
+    max-width: 62ch;
     text-align: center;
     margin: 0 auto;
 }
+
+/* --------------------------------------------------------------------------
+   BANNERS
+   figure/figcaption, so the caption is programmatically tied to its image.
+   The photos are decorative (alt="") — the caption carries the message.
+   -------------------------------------------------------------------------- */
 .kss-banner {
     position: relative;
     padding: 24px 0;
 }
 .kss-banner img {
     width: 100%;
-    height: auto;
-    opacity: 0.7;
+    opacity: .7;
 }
-.kss-banner span {
+.kss-banner figcaption {
     position: absolute;
     bottom: 34px;
     left: 8px;
-    opacity: 0.9;
-    background-color: rgba(252, 252, 252, 0.8);
-    padding: 4px;
-    margin-right: 6px;
-}
-.kss-chips {
-    padding: 32px 0;
-}
-.chip {
-    display: inline-block;
-    background: #F1F1F1;
-    color: #555;
-    padding: 8px;
-    margin: 2px;
-    border-radius: 32px;
-    font-size: 16px;
-}
-.chip:hover {
-     background-color: #DFDFDF;
+    max-width: calc(100% - 16px);
+    color: var(--kss-ink-strong);
+    background-color: var(--kss-caption-bg);
+    padding: 4px 6px;
 }
 
-/* MAIN */
-main h1 {
-    font-size: 32px;
-    padding: 12px 0;
+/* Below ~420px the banner is short enough that an absolutely positioned
+   caption can overflow past the top of its own image once it wraps. Put it
+   back in flow rather than letting it escape. */
+@media (max-width: 420px) {
+    .kss-banner figcaption {
+        position: static;
+        margin-top: 8px;
+        max-width: none;
+    }
 }
 
-main h2 {
-    font-size: 24px;
-    padding: 8px 0;
-}
-
-.kss-skills-title {
-    font-family: 'Satisfy', cursive;
-    line-height: 0.5;
-    text-align: center;
-    overflow: hidden;
-}
-.kss-skills-title span {
-    display: inline-block;
-    position: relative;
-}
-.kss-skills-title span:before,
-.kss-skills-title span:after {
-    content: "";
-    position: absolute;
-    height: 5px;
-    border-bottom: 1px solid #999;
-    top: 0;
-    width: 600px;
-}
-.kss-skills-title span:before {
-    right: 100%;
-    margin-right: 15px;
-}
-.kss-skills-title span:after {
-    left: 100%;
-    margin-left: 15px;
-}
-
-main ol {
-    list-style-type: decimal;
-    padding: 6px 16px;
-}
-
-main ul {
-    list-style-type: circle;
-    padding: 6px 16px;
-}
-main p.last {
-    padding: 12px 0;
-}
-
+/* --------------------------------------------------------------------------
+   SKILLS
+   -------------------------------------------------------------------------- */
 .kss-skills {
     text-align: center;
 }
-.kss-skills h2 {
+
+/* Centred heading flanked by rules. The old version faked this with
+   line-height: .5, overflow: hidden and two 600px pseudo-elements, which
+   clipped the descenders of the Satisfy face and cut off the second line
+   entirely at 200% zoom. Flexbox does it without either hack. */
+.kss-skills-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Satisfy', cursive;
+    font-weight: 400;
     font-size: 26px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 48px;
+    line-height: 1.3;
+    color: var(--kss-ink-strong);
+    padding: 48px 16px 12px;
+}
+.kss-skills-title::before,
+.kss-skills-title::after {
+    content: "";
+    flex: 1 1 auto;
+    border-bottom: 1px solid var(--kss-hairline);
+}
+
+.kss-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 32px 0;
+}
+.chip {
+    background: var(--kss-chip-bg);
+    color: var(--kss-chip-ink);
+    padding: 8px 12px;
+    border-radius: 32px;
+    font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT FORM
+   -------------------------------------------------------------------------- */
+.kss-contact {
+    padding: 48px 16px 16px;
+}
+.kss-contact-title {
+    font-family: 'Satisfy', cursive;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.3;
+    color: var(--kss-ink-strong);
+    text-align: center;
+    padding-bottom: 12px;
+}
+.kss-contact form {
+    max-width: 640px;
+    margin: 0 auto;
+}
+.kss-field {
+    margin-bottom: 20px;
+}
+.kss-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--kss-ink-strong);
+}
+.kss-field input,
+.kss-field textarea {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    background-color: var(--kss-field);
+    border: 1px solid var(--kss-border);
+    border-radius: 4px;
+}
+.kss-field textarea {
+    resize: vertical;
+}
+.kss-submit {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: var(--kss-button-ink);
+    background-color: var(--kss-button);
+    border: 1px solid var(--kss-border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.kss-submit:hover {
+    background-color: #D8D8D8;
+}
+
+/* Spam trap. Hidden from sight and from assistive technology, but a bot
+   filling every field in the form will trip it. */
+.kss-hp {
+    position: absolute;
+    left: -9999px;
+}
+
+/* --------------------------------------------------------------------------
+   PROSE (privacy notice)
+   -------------------------------------------------------------------------- */
+.kss-prose {
+    max-width: 70ch;
+    margin: 0 auto;
+    padding: 16px;
+}
+.kss-prose h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    color: var(--kss-ink-strong);
+    padding: 12px 0;
+}
+.kss-prose h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--kss-ink-strong);
+    padding: 24px 0 8px;
+}
+.kss-prose p {
+    padding: 6px 0;
+}
+.kss-prose ol,
+.kss-prose ul {
+    padding: 6px 0 6px 24px;
+}
+.kss-prose ol {
+    list-style-type: decimal;
+}
+.kss-prose ul {
+    list-style-type: circle;
+}
+.kss-prose li {
+    padding: 3px 0;
+}
+.kss-prose hr {
+    border: 0;
+    border-top: 1px solid var(--kss-hairline);
+    margin: 12px 0;
+}
+.kss-updated {
+    color: var(--kss-ink);
     padding-bottom: 12px;
 }
 
-/* FORM */
-.kss-contact-title {
-    font-family: 'Satisfy', cursive;
-    text-align: center;
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.kss-social {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 48px 16px 16px;
 }
-.kss-contact {
-    padding: 48px 16px 16px 16px;
-    text-align: center;
-}
-input[type="email"],
-textarea {
-    font: inherit;
-    display: block;
-    border-radius: 4px;
-    margin-bottom: 30px;
-    border: 1px solid rgba(215,215,215,.1);
-    padding: 8px 15px;
-    width: 100%;
-    box-sizing: border-box;
-}
-input[type="submit"] {
-    font-weight: 400;
-    font-size: 16px;
-    color:rgba(20, 20, 20, 0.9);
-    background-color: rgba(215,215,215,.3);
-    border-radius: 4px;
-    padding: 8px 15px;
-    width: 100%;
-    border: 1px solid rgba(215,215,215,.1);
-    cursor: pointer;
-}
-textarea {
-    resize: none;
+.kss-social-icon {
+    width: 64px;
+    height: 64px;
 }
 
-/* FOOTER */
-.kss-footer {}
+/* The badges carry their own internal contrast (white glyph on a solid
+   brand circle), so keep them rather than letting forced-colors flatten
+   them into unrecognisable shapes. */
+@media (forced-colors: active) {
+    .kss-social-icon {
+        forced-color-adjust: none;
+    }
+}
+
 .notices {
     padding: 12px 0;
     text-align: center;
 }
 .notices a {
+    /* inline-block so the margin actually applies — it is a dead
+       declaration on an inline box */
+    display: inline-block;
     margin-top: 12px;
-    text-decoration: none;
-    display: block;
-    color: #444;
 }
 .notices p {
     margin-top: 12px;
-    text-decoration: none;
-    display: block;
-}
-.kss-social {
-    text-align: center;
-    padding: 48px 16px 16px 16px;
-}
-/* We add a text description for accessibility and hide it so only image shows */
-.kss-social a {
-    font-size: 0;
-}
-.kss-social-icon {
-    margin: 0 16px;
-    display: inline-block;
-    background-size: contain;
-    width: 64px;
-    height: 64px;
-    resize: both;
 }
 
-/* Social Icons */
-div.linkedin {
-    background: url('data:image/png;base64,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') no-repeat;
-}
-div.github {
-    background: url('data:image/png;base64,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') no-repeat;
-}
-div.stackoverflow {
-    background: url('data:image/png;base64,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') no-repeat;
+/* --------------------------------------------------------------------------
+   MOTION
+   Nothing here animates today; the guard keeps that true if anything is
+   added later.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

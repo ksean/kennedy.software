@@ -2,21 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
-        <loc>https://kennedy.software</loc>
+        <loc>https://kennedy.software/</loc>
+        <lastmod>2026-08-16</lastmod>
         <image:image>
-            <image:loc>http://kennedy.software/img/create.jpg</image:loc>
+            <image:loc>https://kennedy.software/img/create.jpg</image:loc>
             <image:caption>Bring your fresh product ideas to life.</image:caption>
         </image:image>
         <image:image>
-            <image:loc>http://kennedy.software/img/extend.jpg</image:loc>
+            <image:loc>https://kennedy.software/img/extend.jpg</image:loc>
             <image:caption>Expand and integrate with an existing product.</image:caption>
         </image:image>
         <image:image>
-            <image:loc>http://kennedy.software/img/mentor.jpg</image:loc>
+            <image:loc>https://kennedy.software/img/mentor.jpg</image:loc>
             <image:caption>Apply modern best practices to a project.</image:caption>
         </image:image>
     </url>
     <url>
         <loc>https://kennedy.software/privacy.html</loc>
+        <lastmod>2026-08-16</lastmod>
     </url>
 </urlset>
