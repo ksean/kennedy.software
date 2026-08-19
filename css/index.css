@@ -147,12 +147,11 @@ a {
 }
 .kss-header img {
     margin: 0 auto;
-    opacity: .85;
 }
 .kss-description {
     padding: 16px 0;
     width: 90%;
-    max-width: 62ch;
+    max-width: 65ch;
     text-align: center;
     margin: 0 auto;
 }
