@@ -63,9 +63,9 @@
         <div class="kss-container">
             <header class="kss-header">
                 <h1><img alt="Kennedy Software Solutions" src="/img/logo.svg"
-                         width="559" height="104" fetchpriority="high"></h1>
+                         width="559" height="104"></h1>
             </header>
-            <main class="kss-main">
+            <main>
                 <p class="kss-description">
                     Kennedy Software Solutions Inc. is a leading Canadian technology consulting firm.
                     Our track record of success is paved with tested and proven technologies.
@@ -73,32 +73,41 @@
 
                 <figure class="kss-banner">
                     <picture>
+                        <source type="image/avif"
+                                srcset="/img/create-480.avif 480w, /img/create-768.avif 768w, /img/create-1024.avif 1024w"
+                                sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
                         <source type="image/webp"
                                 srcset="/img/create-480.webp 480w, /img/create-768.webp 768w, /img/create-1024.webp 1024w"
                                 sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
-                        <img class="kss-banner-image" src="/img/create.jpg" alt=""
-                             width="1024" height="273" decoding="async">
+                        <img src="/img/create.jpg" alt=""
+                             width="1024" height="273" fetchpriority="high" decoding="async">
                     </picture>
                     <figcaption>Bring your fresh product ideas to life.</figcaption>
                 </figure>
 
                 <figure class="kss-banner">
                     <picture>
+                        <source type="image/avif"
+                                srcset="/img/extend-480.avif 480w, /img/extend-768.avif 768w, /img/extend-1024.avif 1024w"
+                                sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
                         <source type="image/webp"
                                 srcset="/img/extend-480.webp 480w, /img/extend-768.webp 768w, /img/extend-1024.webp 1024w"
                                 sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
-                        <img class="kss-banner-image" src="/img/extend.jpg" alt=""
-                             width="1024" height="273" loading="lazy" decoding="async">
+                        <img src="/img/extend.jpg" alt=""
+                             width="1024" height="273" fetchpriority="high" decoding="async">
                     </picture>
                     <figcaption>Expand and integrate with an existing product.</figcaption>
                 </figure>
 
                 <figure class="kss-banner">
                     <picture>
+                        <source type="image/avif"
+                                srcset="/img/mentor-480.avif 480w, /img/mentor-768.avif 768w, /img/mentor-1024.avif 1024w"
+                                sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
                         <source type="image/webp"
                                 srcset="/img/mentor-480.webp 480w, /img/mentor-768.webp 768w, /img/mentor-1024.webp 1024w"
                                 sizes="(min-width: 1024px) 992px, calc(100vw - 32px)">
-                        <img class="kss-banner-image" src="/img/mentor.jpg" alt=""
+                        <img src="/img/mentor.jpg" alt=""
                              width="1024" height="273" loading="lazy" decoding="async">
                     </picture>
                     <figcaption>Apply modern best practices to a project.</figcaption>
@@ -161,7 +170,7 @@
                         <li class="chip">MongoDB</li>
                         <li class="chip">MySQL</li>
                         <li class="chip">Oracle DBMS</li>
-                        <li class="chip">PostgresSQL</li>
+                        <li class="chip">PostgreSQL</li>
                         <li class="chip">Redis</li>
                         <li class="chip">Solr</li>
                     </ul>
@@ -190,7 +199,7 @@
                 </div>
             </main>
 
-            <footer class="kss-footer">
+            <footer>
                 <div class="kss-social">
                     <a target="_blank" rel="noreferrer" href="https://ca.linkedin.com/in/kennedyms">
                         <svg class="kss-social-icon" viewBox="0 0 32 32" width="64" height="64" aria-hidden="true" focusable="false">

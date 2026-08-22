@@ -20,16 +20,6 @@
     src: url('../fonts/roboto-v29-latin-regular.woff2') format('woff2');
 }
 
-/* Satisfy sets five decorative headings. `optional` lets the browser skip the
-   swap entirely on a slow connection rather than reflowing them late. */
-@font-face {
-    font-family: 'Satisfy';
-    font-style: normal;
-    font-weight: 400;
-    font-display: optional;
-    src: url('../fonts/satisfy-v11-latin-regular.woff2') format('woff2');
-}
-
 /* --------------------------------------------------------------------------
    TOKENS
    Every value below is a rendered colour. The page used to carry
@@ -41,13 +31,13 @@
     --kss-page:        #FCFCFC;
     --kss-ink:         #4F4F4F;  /*  7.98:1  body copy                  */
     --kss-ink-strong:  #333333;  /* 12.32:1  headings, captions         */
-    --kss-link:        #2F4F8F;  /*  7.77:1  links                      */
-    --kss-chip-bg:     #ECECEC;
-    --kss-chip-ink:    #4F4F4F;  /*  6.93:1  on --kss-chip-bg           */
+    --kss-accent:      #315E55;  /*  7.15:1  restrained evergreen      */
+    --kss-accent-dark: #24483F;
+    --kss-accent-soft: #E8F0EE;
+    --kss-chip-bg:     #EDF3F1;
+    --kss-chip-ink:    #35574F;
     --kss-field:       #FFFFFF;
     --kss-border:      #767676;  /*  4.43:1  control boundaries (1.4.11)*/
-    --kss-button:      #E4E4E4;
-    --kss-button-ink:  #2A2A2A;  /* 11.29:1  on --kss-button            */
     --kss-hairline:    #B0B0B0;  /* decorative rules only               */
     --kss-focus:       #1B4EC4;  /*  6.98:1  focus ring                 */
     --kss-caption-bg:  #FAFAFA;  /* opaque: caption contrast no longer
@@ -63,11 +53,11 @@
 *, *::before, *::after {
     box-sizing: border-box;
 }
-body, h1, h2, h3, p, figure, figcaption, ul, ol, dl, dd, fieldset {
+body, h1, h2, p, figure, figcaption, ul, ol {
     margin: 0;
     padding: 0;
 }
-ul[class], ol[class] {
+ul[class] {
     list-style: none;
 }
 img, svg, picture {
@@ -77,7 +67,7 @@ img, svg, picture {
 img {
     height: auto;
 }
-input, textarea, button, select {
+input, textarea, button {
     font: inherit;
     color: inherit;
 }
@@ -98,10 +88,12 @@ body {
     background-color: var(--kss-page);
     color: var(--kss-ink);
     font-family: 'Roboto', system-ui, sans-serif;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.6;
 }
 a {
-    color: var(--kss-link);
+    color: var(--kss-accent);
+    text-underline-offset: .15em;
 }
 
 /* One focus style for the whole site. The old stylesheet defined none, and
@@ -128,30 +120,27 @@ a {
 }
 
 .kss-container {
-    padding: 16px;
+    padding: clamp(16px, 3vw, 32px);
     margin: 0 auto;
-    max-width: 1024px;
+    max-width: 1056px;
 }
 
 /* --------------------------------------------------------------------------
    HEADER
    -------------------------------------------------------------------------- */
 .kss-header {
-    padding-bottom: 16px;
-}
-/* The logo image *is* the page's h1; the heading itself carries no styling
-   of its own. */
-.kss-header h1 {
-    font-size: inherit;
-    font-weight: inherit;
+    padding-bottom: clamp(24px, 4vw, 40px);
 }
 .kss-header img {
     margin: 0 auto;
 }
 .kss-description {
-    padding: 16px 0;
+    padding: 8px 0 clamp(24px, 4vw, 40px);
     width: 90%;
     max-width: 65ch;
+    color: var(--kss-ink-strong);
+    font-size: clamp(18px, 1rem + .5vw, 22px);
+    line-height: 1.55;
     text-align: center;
     margin: 0 auto;
 }
@@ -163,20 +152,24 @@ a {
    -------------------------------------------------------------------------- */
 .kss-banner {
     position: relative;
-    padding: 24px 0;
+    margin: 0 0 clamp(24px, 4vw, 40px);
 }
 .kss-banner img {
     width: 100%;
     opacity: .7;
+    border-radius: 6px;
 }
 .kss-banner figcaption {
     position: absolute;
-    bottom: 34px;
-    left: 8px;
-    max-width: calc(100% - 16px);
+    bottom: 12px;
+    left: 12px;
+    max-width: calc(100% - 24px);
     color: var(--kss-ink-strong);
     background-color: var(--kss-caption-bg);
-    padding: 4px 6px;
+    border-left: 3px solid var(--kss-accent);
+    padding: 6px 10px;
+    font-size: clamp(17px, 1rem + .2vw, 19px);
+    line-height: 1.4;
 }
 
 /* Below ~420px the banner is short enough that an absolutely positioned
@@ -197,39 +190,40 @@ a {
     text-align: center;
 }
 
-/* Centred heading flanked by rules. The old version faked this with
-   line-height: .5, overflow: hidden and two 600px pseudo-elements, which
-   clipped the descenders of the Satisfy face and cut off the second line
-   entirely at 200% zoom. Flexbox does it without either hack. */
+/* Centred heading flanked by rules. The italic serif and wider tracking echo
+   the "software solutions" line of the logo without another font download. */
 .kss-skills-title {
     display: flex;
     align-items: center;
     gap: 15px;
-    font-family: 'Satisfy', cursive;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
     font-weight: 400;
-    font-size: 26px;
-    line-height: 1.3;
-    color: var(--kss-ink-strong);
-    padding: 48px 16px 12px;
+    font-size: clamp(24px, 1.25rem + 1vw, 32px);
+    line-height: 1.35;
+    letter-spacing: .045em;
+    color: var(--kss-accent);
+    padding: clamp(40px, 6vw, 64px) 16px 16px;
 }
 .kss-skills-title::before,
 .kss-skills-title::after {
     content: "";
     flex: 1 1 auto;
-    border-bottom: 1px solid var(--kss-hairline);
+    border-bottom: 1px solid #99AFA9;
 }
 
 .kss-chips {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 4px;
-    padding: 32px 0;
+    gap: 8px;
+    padding: 24px 0;
 }
 .chip {
     background: var(--kss-chip-bg);
     color: var(--kss-chip-ink);
-    padding: 8px 12px;
+    border: 1px solid #D7E4E0;
+    padding: 7px 12px;
     border-radius: 32px;
     font-size: 16px;
 }
@@ -238,16 +232,22 @@ a {
    CONTACT FORM
    -------------------------------------------------------------------------- */
 .kss-contact {
-    padding: 48px 16px 16px;
+    margin-top: clamp(48px, 8vw, 80px);
+    padding: clamp(32px, 5vw, 48px) clamp(16px, 4vw, 40px);
+    background-color: var(--kss-accent-soft);
+    border-top: 3px solid var(--kss-accent);
+    border-radius: 8px;
 }
 .kss-contact-title {
-    font-family: 'Satisfy', cursive;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
     font-weight: 400;
-    font-size: 26px;
-    line-height: 1.3;
-    color: var(--kss-ink-strong);
+    font-size: clamp(28px, 1.5rem + 1vw, 36px);
+    line-height: 1.35;
+    letter-spacing: .06em;
+    color: var(--kss-accent);
     text-align: center;
-    padding-bottom: 12px;
+    padding-bottom: 24px;
 }
 .kss-contact form {
     max-width: 640px;
@@ -277,14 +277,15 @@ a {
     width: 100%;
     padding: 10px 15px;
     font-size: 16px;
-    color: var(--kss-button-ink);
-    background-color: var(--kss-button);
-    border: 1px solid var(--kss-border);
+    color: #FFFFFF;
+    background-color: var(--kss-accent);
+    border: 1px solid var(--kss-accent);
     border-radius: 4px;
     cursor: pointer;
 }
 .kss-submit:hover {
-    background-color: #D8D8D8;
+    background-color: var(--kss-accent-dark);
+    border-color: var(--kss-accent-dark);
 }
 
 /* Spam trap. Hidden from sight and from assistive technology, but a bot
@@ -303,13 +304,13 @@ a {
     padding: 16px;
 }
 .kss-prose h1 {
-    font-size: 32px;
+    font-size: clamp(32px, 1.75rem + 1vw, 40px);
     line-height: 1.25;
     color: var(--kss-ink-strong);
     padding: 12px 0;
 }
 .kss-prose h2 {
-    font-size: 24px;
+    font-size: clamp(22px, 1.25rem + .5vw, 26px);
     line-height: 1.3;
     color: var(--kss-ink-strong);
     padding: 24px 0 8px;
@@ -347,7 +348,7 @@ a {
     display: flex;
     justify-content: center;
     gap: 32px;
-    padding: 48px 16px 16px;
+    padding: clamp(48px, 8vw, 80px) 16px 16px;
 }
 .kss-social-icon {
     width: 64px;
